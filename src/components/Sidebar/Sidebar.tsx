@@ -2,58 +2,71 @@ import React from "react";
 import {InputField} from "./InputField/InputField";
 import s from './sidebar.module.css'
 
-export const SideBar = () => {
+type SideBarPropsType = {
+  lastName: string
+  name: string
+  patronymic: string
+  idNum: string
+  passportSeries: string,
+  passportNumber: string
+  onChangeField: (criterion: string, value: string) => void
+}
+
+export const SideBar: React.FC<SideBarPropsType> = (props) => {
   return (
     <div className={s.sidebar}>
       <div className={s.sidebarHeader}>Регистрационный учет</div>
-      <form  className={s.sidebarForm} onSubmit={() => {
+      <div className={s.sidebarForm} onSubmit={() => {
       }}>
         <InputField
           label="Фамилия"
           placeholder="ВВЕДИТЕ ФАМИЛИЮ"
-          value={''}
-          onChange={() => {
-          }}
+          value={props.lastName}
+          onChangeField={props.onChangeField}
+          dataType={'lastName'}
         />
         <InputField
           label="Имя"
           placeholder="ВВЕДИТЕ ИМЯ"
-          value={''}
-          onChange={() => {
-          }}
+          value={props.name}
+          onChangeField={props.onChangeField}
+          dataType={'name'}
         />
         <InputField
           label="Отчество"
           placeholder="ВВЕДИТЕ ОТЧЕСТВО"
-          value={''}
-          onChange={() => {
-          }}
+          value={props.patronymic}
+          onChangeField={props.onChangeField}
+          dataType={'patronymic'}
         />
         <InputField
           label="Идентификационный номер"
           placeholder="ВВЕДИТЕ НОМЕР"
-          value={''}
-          onChange={() => {
-          }}
+          value={props.idNum}
+          onChangeField={props.onChangeField}
+          dataType={'idNum'}
         />
         <div className={s.dataPassport}>
           <InputField
             label="Серия"
             placeholder=""
-            value={''}
-            onChange={() => {
-            }}
+            value={props.passportSeries}
+            onChangeField={props.onChangeField}
+            dataType={'passportSeries'}
           />
           <InputField
             label="№ паспорта"
             placeholder=""
-            value={''}
-            onChange={() => {
-            }}
+            value={props.passportNumber}
+            onChangeField={props.onChangeField}
+            dataType={'passportNumber'}
           />
         </div>
-        <button className={s.sidebarButton}>Поиск в локальной БД</button>
-      </form>
+        <button
+          className={s.sidebarButton}
+        >Поиск в локальной БД
+        </button>
+      </div>
     </div>
   )
 }
